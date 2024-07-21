@@ -1,45 +1,25 @@
 import 'dotenv/config';
-import { getGreetChoices } from './cogs/greet.js';
-import { capitalize, InstallGlobalCommands } from './utils.js';
+import {InstallGlobalCommands} from './utils.js';
 
-// Get the game choices from game.js
-function createCommandChoices() {
-  const choices = getGreetChoices();
-  const commandChoices = [];
-
-  for (let choice of choices) {
-    commandChoices.push({
-      name: capitalize(choice),
-      value: choice.toLowerCase(),
-    });
-  }
-
-  return commandChoices;
-}
-
-// Simple test command
+//type: 1 indicates slash command
 const TEST_COMMAND = {
-  name: 'test',
+  name: 'test', //Same as custom_id
   description: 'Basic command',
-  type: 1,
+  type: 1, //Slash command
 };
 
-
-const GREET_COMMAND = {
-  name: 'greet',
-  description: 'Greet fellow discord member',
-  options: [
-    {
-      type: 3, //String
-      name: 'object',
-      description: 'Pick your object',
-      required: true,
-      choices: createCommandChoices(),
-    }
-  ],
-  type: 1,//Slash command
+/*const TEST_MODAL_COMMAND = {
+  name: 'test-modal',
+  description: 'Testing modals',
+  type: 1, //Slash command
 };
 
-const ALL_COMMANDS = [TEST_COMMAND, GREET_COMMAND];
+const RUFFLE_CREATION_MODAL = {
+  name: 'ruffle-creation',
+  description: 'Creates a new ruffle',
+  type: 1, //Slash command
+}*/
+
+const ALL_COMMANDS = [TEST_COMMAND, /*TEST_MODAL_COMMAND, RUFFLE_CREATION_MODAL*/];
 
 InstallGlobalCommands(process.env.APP_ID, ALL_COMMANDS);
